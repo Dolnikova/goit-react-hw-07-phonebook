@@ -6,11 +6,13 @@ import { ContactList } from './Phonebook/ContactList/ContactList';
 import { Container } from './Phonebook/cotainer';
 import Filter from './Phonebook/Filter/Filer';
 import { useDispatch, useSelector } from 'react-redux';
-import { getContacts } from 'redux/selectors';
+import { getContacts, getLoading } from 'redux/selectors';
 import { fetchContacts } from 'redux/operations';
+import { Loader } from './Phonebook/Loader/Loader';
 
 export const App = () => {
   const contacts = useSelector(getContacts);
+  const isLoading = useSelector(getLoading);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -34,8 +36,20 @@ export const App = () => {
         <h2>Phonebook</h2>
         <ContactForm />
         <h2>Contacts</h2>
+        {isLoading && <Loader />}
         {contacts.length > 1 && <Filter />}
-        {contacts.length > 0 ? <ContactList /> : 'You have no contacts saved'}
+        {contacts.length > 0 ? (
+          <ContactList />
+        ) : (
+          <p
+            style={{
+              marginBottom: '25px',
+              lineHeight: '1.15',
+            }}
+          >
+            You have no contacts saved
+          </p>
+        )}
       </Container>
     </>
   );

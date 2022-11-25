@@ -21,14 +21,7 @@ export const contactsSlice = createSlice({
     isLoading: false,
     error: null,
   },
-  reducers: {
-    // addNewContact(state, { payload }) {
-    //   state.items.push({ ...payload, id: nanoid() });
-    // },
-    // deleteContact(state, { payload }) {
-    //   return state.items.filter(item => item.id !== payload);
-    // },
-  },
+
   extraReducers: {
     [fetchContacts.pending]: pending,
     [fetchContacts.fulfilled](state, { payload }) {
