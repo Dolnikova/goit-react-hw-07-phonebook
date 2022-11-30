@@ -22,7 +22,11 @@ export const ContactForm = () => {
       name,
       phone,
     };
-    if (contacts.some(contact => contact.name === name)) {
+    if (
+      contacts.some(
+        contact => contact.name.toLowerCase() === name.toLowerCase()
+      )
+    ) {
       notify(name);
     } else {
       dispatch(addNewContact(contact));
